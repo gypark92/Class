@@ -1,21 +1,19 @@
-class Person {
-    public readonly name: string = "na";
-    private readonly country :string ;
+//class =>object 
 
-    constructor(public _name: string, private age: number) {
 
-        this.country="korea";//constructor >> readonly 초기화가능 
-    }
-
-    // hello(){
-    //     this.country = "China";//readonly 라 갑변경 안됨
-    // }
-
+class Students{
+    //index signatures >> properti가 고정된 형태가 아니라 동적으로 properti 이름이 들어오는 경우 
+    [index: string]: 'male' | 'female';// 타입 지정 
 }
+const a =new Students();
 
-const p1 = new Person("na", 3);//디폴트생성자 (인자가없는 생성자)
-console.log(p1.name)//get을 하는 함수 
+a.mark ='male'
+a.john ='male'
+console.log(a)
 
+const b = new Students();
+b.jo = 'female'
+b.na = 'male'
+b.me = 'female'
 
-console.log(p1.name)
-
+console.log(b)
