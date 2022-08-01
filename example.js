@@ -1,13 +1,18 @@
 "use strict";
-//class =>object 
-class Students {
+class Person {
+    hello() {
+        console.log("hi", Person.CITY);
+    }
+    change() {
+        Person.CITY = "LA";
+    }
 }
-const a = new Students();
-a.mark = 'male';
-a.john = 'male';
-console.log(a);
-const b = new Students();
-b.jo = 'female';
-b.na = 'male';
-b.me = 'female';
-console.log(b);
+Person.CITY = "Seoul"; //class로부터 만들어진 object에서 공통적으로 사용하려는 데이터를 static으로 넣어서 사용 
+const p1 = new Person(); //object
+p1.hello(); //hi Seoul
+//p1.hello();//static 오브젝트에서는 이 함수를 method로 생각하지않음
+const p2 = new Person();
+//Person.hello();//클래스에 바로 함수 호출해서 사용 
+p2.hello(); //hi Seoul
+p1.change();
+p2.hello(); //hi LA 
