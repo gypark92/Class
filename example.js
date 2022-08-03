@@ -1,18 +1,20 @@
 "use strict";
-class Person {
-    hello() {
-        console.log("hi", Person.CITY);
+//Singletons>>클래스로부터 단 하나의 오브젝트를 생성해서 사용하는 패턴 
+//static >> 데이터를 공유  
+class ClassName {
+    //private >>new를 호출할 수 없는 상태 
+    constructor() {
     }
-    change() {
-        Person.CITY = "LA";
+    static getInstance() {
+        //ClassName 으로부터 만든 object가 있으면 리턴
+        if (ClassName.instance === null) {
+            ClassName.instance = new ClassName();
+            //ClassName 으로부터 만든 object가 없으면 만든다 
+        }
+        return ClassName.instance;
     }
 }
-Person.CITY = "Seoul"; //class로부터 만들어진 object에서 공통적으로 사용하려는 데이터를 static으로 넣어서 사용 
-const p1 = new Person(); //object
-p1.hello(); //hi Seoul
-//p1.hello();//static 오브젝트에서는 이 함수를 method로 생각하지않음
-const p2 = new Person();
-//Person.hello();//클래스에 바로 함수 호출해서 사용 
-p2.hello(); //hi Seoul
-p1.change();
-p2.hello(); //hi LA 
+ClassName.instance = null;
+const a = ClassName.getInstance(); //최초로 불려서 만들어서
+const b = ClassName.getInstance(); //있으니까 a의 것을 리턴
+console.log(a === b); //true
