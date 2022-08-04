@@ -1,20 +1,16 @@
 "use strict";
-//Singletons>>클래스로부터 단 하나의 오브젝트를 생성해서 사용하는 패턴 
-//static >> 데이터를 공유  
-class ClassName {
-    //private >>new를 호출할 수 없는 상태 
-    constructor() {
+class Parent {
+    constructor(_name, _age) {
+        this._name = _name;
+        this._age = _age;
     }
-    static getInstance() {
-        //ClassName 으로부터 만든 object가 있으면 리턴
-        if (ClassName.instance === null) {
-            ClassName.instance = new ClassName();
-            //ClassName 으로부터 만든 object가 없으면 만든다 
-        }
-        return ClassName.instance;
+    print() {
+        console.log(`${this._name},${this._age}`);
     }
 }
-ClassName.instance = null;
-const a = ClassName.getInstance(); //최초로 불려서 만들어서
-const b = ClassName.getInstance(); //있으니까 a의 것을 리턴
-console.log(a === b); //true
+const p = new Parent("park", 20);
+p.print();
+class Child extends Parent {
+}
+const c = new Child("son", 31);
+c.print();
