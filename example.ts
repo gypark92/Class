@@ -1,26 +1,18 @@
-class Parent{
-    constructor(protected _name: string, private _age:number){
+//abstract Classes 
+abstract class abstractPerson{//클래스 앞에 abstract 붙여줘야한다 
+    protected _name :string = "park";
 
-    } 
+    abstract setName(name:string):void;//abstract 경우 구현하지않음 
+}
 
+//new abstractPerson() 이용불가 
 
-    public print():void{
-        console.log(`${this._name},${this._age}`);
-        
+class Person extends abstractPerson{//상속을 만들어서 완전하게 만듬 
+    setName(name: string): void {
+        this._name = name; 
     }
 }
 
-const p = new Parent("park",20);
-p.print();
+const p = new Person();
 
-class Child extends Parent{
-    public gender = "male"
-
-    constructor(age:number){
-        super("son",age)
-    }
-}
-
-const c = new Child(31);
-
-c.print()
+p.setName("son");
